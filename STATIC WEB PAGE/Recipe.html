@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinoy Book Recipe</title>
+    <style>
+
+
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c0c7c9; 
+            background-image: url('bg.jpeg'); 
+            background-size: cover;
+            background-repeat: no-repeat; 
+            background-position: center; 
+}
+
+        body::after {
+            content: "";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5); 
+            z-index: -1; 
+}
+        
+        header {
+            background-image: linear-gradient(to right,#eeb200, #fdd813, #eeb200);
+            color: #000000;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex;
+            align-items: center;
+            flex-grow: 5;
+        }
+
+        nav ul {
+            list-style-type: none;
+             margin: 0;
+             padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+             margin-left: 20px;
+        }
+                
+        nav ul li a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+             text-decoration: underline;
+        }
+    
+        .logo {
+            width: 130px; 
+        } 
+
+        h1 {
+            margin-top: 0;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-container input[type="text"] {
+            padding: 8px;
+            border-radius: 20px;
+            border: 2px solid #ccc;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 8px 20px;
+            background-color: #00365a;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .section-header {
+            background-image: linear-gradient(to right,#000000, #1d1d1d,#000000); 
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em; 
+        }
+
+        .section-header1 {
+            background-image: linear-gradient(to right,#000000, #1d1d1d,#000000); 
+            color: #ffffff;
+            padding: 5px;
+            text-align: center;
+            margin-bottom: 0px;
+            font-size: 2.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 130px; 
+            margin-right: 10px; 
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 8px;
+            border-radius: 20px;
+            border: 2px solid #ccc;
+            margin-right: 10px;
+        }
+
+        .search-container button {
+            padding: 8px 20px;
+            background-color: #00365a;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .food-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+        .food-card {
+            background-image: linear-gradient(to right, #ffffff, #c2bfbf);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 400px;
+            transition: all 0.3s ease; 
+        }
+
+        .food-card.full-screen {
+            width: calc(50% - 20px);
+            margin: 80px; 
+            box-shadow: none; 
+            
+        }
+
+        
+        .food-card h2 {
+        color: #000000;
+        text-align: center; 
+        font-size: 3em; 
+        cursor: pointer; 
+        font-family: "Poppins", sans-serif; 
+        }
+        .food-card p {
+            color: #000000;
+            font-family: Arial, sans-serif;
+            font-weight: bold; /* Adding this line makes the <p> elements bold */
+            display: none;
+            font-size: 1.5em;
+        }
+
+        .food-card ul,
+        .food-card ol {
+            color: #000000;
+            font-family: Arial, sans-serif; 
+            display: none; 
+            font-size: 1.2em;
+        }
+        .food-card img {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }    
+
+        h2 {
+            text-decoration: underline; 
+        }
+        .container {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            color: #383838;
+            padding: 10px 40px;
+            border-radius: 6px;
+        }
+
+        .pagination ul {
+            margin: 20px 30px;
+        }
+        .pagination li {
+            display: inline-block;
+            margin: 0 10px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 45px;
+            cursor: pointer;
+            background-position: 0 -45px;
+            transition: background-position 0.5s;
+        }
+
+        ul li.active {
+            color: #fff;       
+            background-repeat: no-repeat;
+            background-position: 0 0;
+        }
+
+        .btn1, .btn2 {
+            display: inline-block;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 500;
+            color: #383838;
+            background: transparent;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn1 img {
+            width: 48px;
+            margin-right: 15px;
+        }
+
+        .btn2 img {
+            width: 48px;
+            margin-left: 15px;
+            transform: rotate(180deg);
+
+        }
+    
+        .footer {
+            background-image: linear-gradient(to right,#eeb200, #fdd813, #eeb200); 
+            color: #000000;
+            padding: 5px;
+            text-align: center;
+            font-size: 1.5em; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Filipino Cuisine" class="logo">
+    
+
+        <nav>
+            <b><ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Recipe.html">Recipe</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href=contact.html>Contact</a></li>
+            </b></ul>
+        </nav>
+
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button type="button" onclick="filterFoodCards()">Search</button>
+        </div>
+    </header>
+
+    <div class="section-header">
+        <h2>Pinoy Book Recipe</h2>
+    </div>
+    <div class="food-container">
+        <div class="food-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Adobo_DSCF4391.jpg" alt="pork Adobo">
+            <h2>Pork Adobo Recipe</h2> 
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs pork belly </li>
+                <li>2 tablespoons garlic </li>
+                <li>5 dried bay leaves</li>
+                <li>4 tablespoons vinegar </li>
+                <li>1/2 cup soy sauce </li>
+                <li>1 tablespoon peppercorn </li>
+                <li>2 cups water</li>
+                <li>Salt to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine the pork belly, soy sauce, and garlic then marinate for at least 1 hour.</li>
+                <li>Heat the pot and put in the marinated pork belly then cook for a few minutes.</li>
+                <li>Pour remaining marinade including garlic.</li>
+                <li>Add water, whole peppercorn, and dried bay leaves then bring to a boil. Simmer for 40 minutes to 1 hour.</li>
+                <li>Put in the vinegar and simmer for 12 to 15 minutes.</li>
+                <li>Add salt to taste.</li>
+                <li>Serve hot. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div id="apologyMessage" style="display: none; font-size: 50px; padding: 100px;">
+            <br>
+            <br>
+            <b><p>Sorry, the food you are looking <br>
+                for is not available in the list.</p></br></b>
+            </br>
+            </br>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Sarciadong Pechay.jpg" alt="Adobo">
+            <h2>Sarciadong Pechay</h2> 
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 bunches pechay</li>
+                <li>2 eggs beaten</li>
+                <li>2 tomatoes</li>
+                <li>5 cloves garlic minced</li>
+                <li>1 onion minced1</li>
+                <li>1 cup water</li>
+                <li>2 tablespoons cooking oil</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat oil in a pan. Sauté garlic, onion, and tomatoes.</li>
+                <li>Add the pechay. Sauté for 20 seconds and then pour water. Let it boil.</li>
+                <li>Gently pour the beaten egg around the pan. Stir and continue cooking until the eggs start to solidify.</li>
+                <li>Season with fish sauce and ground black pepper. Serve with rice.</li>
+                <li>Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Paksiw na Isda.png" alt="paksiw na Isda">
+            <h2>Paksiw na Isda </h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 pieces fish, about half a pound each, cleaned and scales removed</li>
+                <li>1 knob ginger, sliced and pounded</li>
+                <li>6 cloves garlic, skin removed</li>
+                <li>1/2 cup vinegar</li>
+                <li>1 cup water</li>
+                <li>1 medium onion, sliced</li>
+                <li>1 small bitter gourd, chopped (optional)</li>
+                <li>3 pieces finger chili</li>
+                <li>2 teaspoons salt</li>
+                <li>1 teaspoon whole peppercorn</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat a pan and cooking pot, then pour in vinegar and water.</li>
+                <li>Add salt and whole peppercorn, then stir. Bring to a boil.</li>
+                <li>Arrange the fish in the pan along with the ginger, garlic, onion, bitter gourd, and finger chili. Cover and simmer over low to medium heat for 12 to 15 minutes.</li>
+                <li>Turn off the heat and transfer to a serving plate.</li>
+                <li>Serve hot with steamed rice. Share and enjoy!</li>
+                <li>Note: You may substitute salt with 3/4 to 1 tablespoon fish sauce.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Calderetang Manok.png" alt="Calderetang Manok">
+            <h2>Calderetang Manok</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 lbs chicken, cut into serving pieces</li>
+                <li>2 bell peppers</li>
+                <li>1 potato, diced</li>
+                <li>2 carrots, diced</li>
+                <li>8 ounces tomato sauce</li>
+                <li>3 ounces liver spread</li>
+                <li>4 tablespoons soy sauce</li>
+                <li>1 1/2 cups water</li>
+                <li>1 onion, minced</li>
+                <li>5 cloves garlic</li>
+                <li>1 ½ teaspoons garlic powder</li>
+                <li>1 ounce cheese, grated</li>
+                <li>½ cup cooking oil</li>
+                <li>1 lime</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Marinate chicken in soy sauce, 1 ½ teaspoons garlic powder, ½ teaspoon ground black pepper, and juice from 1 lime for at least 1 hour.</li>
+                <li>Fry the potatoes and carrots. Set aside.</li>
+                <li>Using around 3 tablespoons of cooking oil, sauté the onion and 4 cloves of minced garlic.</li>
+                <li>Add the marinated chicken once the onion softens. Sauté the chicken until it turns medium brown in color.</li>
+                <li>Pour the tomato sauce and water into the cooking pot. Cover and let it boil and then adjust the heat to a simmer. Continue cooking for 40 minutes.</li>
+                <li>Add the liver spread. Stir and add the bell peppers, potato, and carrots.</li>
+                <li>Season with fish sauce and ground black pepper.</li>
+                <li>Add the grated cheese.</li>
+                <li>Serve warm with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Chicken Adobo.png" alt="Chicken Adobo">
+            <h2>Chicken Adobo</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs chicken</li>
+                <li>3 pieces dried bay leaves</li>
+                <li>4 tablespoons soy sauce</li>
+                <li>6 tablespoons white vinegar</li>
+                <li>5 cloves garlic</li>
+                <li>1 1/2 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>1 teaspoon sugar</li>
+                <li>1/4 teaspoon salt</li>
+                <li>1 teaspoon whole peppercorn</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine chicken, soy sauce, and garlic in a large bowl. Mix well. Marinate the chicken for at least 1 hour. Note: the longer the time, the better.</li>
+                <li>Heat a cooking pot. Pour cooking oil.</li>
+                <li>When the oil is hot enough, pan-fry the marinated chicken for 2 minutes per side.</li>
+                <li>Pour in the remaining marinade, including garlic. Add water. Bring to a boil.</li>
+                <li>Add dried bay leaves and whole peppercorn. Simmer for 30 minutes or until the chicken gets tender.</li>
+                <li>Add vinegar. Stir and cook for 10 minutes.</li>
+                <li>Put in the sugar and salt. Stir and turn the heat off.</li>
+                <li>Serve hot. Share and Enjoy!</li>
+            </ol>
+        </div>
+
+         
+        <div class="food-card">
+            <img src="Fried Eggplant.png" alt="Fried Eggplant">
+            <h2>Fried Eggplant </h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>5 pieces Chinese eggplants</li>
+                <li>2 pieces eggs</li>
+                <li>1 bunch green onions, chopped</li>
+                <li>4 tablespoons cornstarch</li>
+                <li>8 tablespoons all-purpose flour</li>
+                <li>½ teaspoon baking powder</li>
+                <li>5 teaspoons salt, divided</li>
+                <li>¼ teaspoon ground black pepper</li>
+                <li>2 cups water</li>
+                <li>2 cups cooking oil</li>
+            </ul>
+            <p>Dipping Sauce Ingredients:</p>
+            <ul>
+                <li>1 cup white vinegar</li>
+                <li>2 teaspoons soy sauce</li>
+                <li>½ piece red onion, chopped</li>
+                <li>2 tablespoons green onion, chopped</li>
+                <li>3 pieces Thai chili pepper, chopped</li>
+                <li>3 cloves garlic, chopped</li>
+                <li>1 teaspoon sugar</li>
+                <li>¼ teaspoon salt</li>
+                <li>¼ teaspoon ground black pepper</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Grate the eggplants and arrange in a bowl. Sprinkle 4 teaspoons of salt. Toss until the eggplants are evenly coated. Let it stay for 10 minutes.</li>
+                <li>Add 2 cups of water into the bowl. Wash the eggplants to get rid of the salt. Grab the eggplants with your hand and squeeze until the water drains completely. You can also put this in a cheesecloth and wring it until the water drains out.</li>
+                <li>Combine flour, cornstarch, and baking powder in a bowl. Mix well and then set aside.</li>
+                <li>Beat the eggs in a large bowl. Add the eggplants, green onions, remaining salt, and ground black pepper. Mix well.</li>
+                <li>Gradually add the flour and cornstarch mixture. Mix until all the ingredients are well blended.</li>
+                <li>Heat 2 cups of oil in a small pan. Note: the oil must be deep enough for the mixture to float.</li>
+                <li>Scoop around 3 tablespoons of the eggplant mixture into the pan with hot oil. Fry until both sides are brown and crispy. Drain the excess oil and arrange the eggplant fritters on a serving plate.</li>
+                <li>Make the dipping sauce by combining vinegar, sugar, salt, ground black pepper, and soy sauce in a bowl. Microwave for 30 seconds and then stir until well blended. Add chili peppers, onion, garlic, and green onion. Serve with the eggplant fritters.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="pork sisig.png" alt="pork sisig">
+            <h2>Pork Sisig</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb pig ears</li>
+                <li>1 lb. pig snout</li>
+                <li>1 lb pork belly</li>
+                <li>2 pieces onions minced</li>
+                <li>3 pieces bay leaves</li>
+                <li>2 teaspoons salt</li>
+                <li>4 thumbs ginger crushed</li>
+                <li>1 quarts water</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine pig ears, snout, pork belly, ginger, bay leaves, 2 teaspoons salt, and 1 quart of water in a cooking pot. Boil for 1 hour. Remove from the pot and drain the water.</li>
+                <li>Heat-up your grill. Start grilling the pig parts for around 5 minutes per side. Remove from the grill afterwards and let it cool down.</li>
+                <li>Make the dressing by combining all the dressing ingredients. Mix well.</li>
+                <li>Chop the grilled pig parts into small pieces. In a large mixing bowl, combine the chopped pork with onion and the dressing mixture. Toss until all the ingredients are well blended.</li>
+                <li>Transfer to a serving plate. Serve with your favorite drink. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="pork kilawin.png" alt="pork kilawin">
+            <h2>Pork Kilawin Recipe</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb pork belly</li>
+                <li>2 cucumbers, sliced</li>
+                <li>2 tomatoes (optional), sliced</li>
+                <li>1 red onion, sliced</li>
+                <li>3 pieces chili peppers, chopped</li>
+            </ul>
+
+            <p>Sauce Ingredients:</p>
+            <ul>
+                <li>¾ cup white vinegar</li>
+                <li>2 teaspoons soy sauce</li>
+                <li>2 teaspoons white sugar</li>
+                <li>¼ teaspoon salt</li>
+                <li>¼ teaspoon ground black pepper</li>
+            </ul>
+
+            <p>Marinade Ingredients:</p>
+            <ul>
+                <li>½ cup soy sauce</li>
+                <li>¼ cup banana ketchup</li>
+                <li>1 head garlic, minced</li>
+                <li>½ lemon, juiced</li>
+                <li>1 teaspoon onion powder</li>
+                <li>½ teaspoon salt</li>
+                <li>¼ teaspoon ground black pepper</li>
+            </ul>
+
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine all the marinade ingredients in a bowl. Mix well. Add the pork belly. Marinate for at least 3 hours.</li>
+                <li>Grill the pork belly until fully cooked. Slice it into serving pieces. Set aside.</li>
+                <li>Combine all the sauce ingredients in a large mixing bowl. Add the sliced pork, cucumber, tomato (if using), onion, and chili pepper. Toss until well blended.</li>
+                <li>Transfer to a serving plate. Serve.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Pork and Shrimp Siomai with Chili Garlic Oil.png" alt="Pork and Shrimp Siomai with Chili Garlic Oil">
+            <h2>Pork and Shrimp Siomai</h2>
+            <p>Siomai Ingredients:</p>
+            <ul>
+                <li>3 lbs. ground pork</li>
+                <li>1 cup shrimp, minced</li>
+                <li>12 ml Knorr Liquid Seasoning</li>
+                <li>½ cup onion, minced</li>
+                <li>½ cup carrot, minced</li>
+                <li>¼ cup green onion, minced</li>
+                <li>4 tablespoons cornstarch</li>
+                <li>1 piece egg</li>
+                <li>2 teaspoons sesame oil</li>
+                <li>½ teaspoon salt</li>
+                <li>¼ teaspoon ground black pepper</li>
+                <li>50 pieces wonton wrapper</li>
+            </ul>
+
+            <p>Chili Garlic Oil Ingredients:</p>
+            <ul>
+                <li>2 heads garlic, peeled</li>
+                <li>1/4 lb Thai chili pepper</li>
+                <li>1 piece star anise</li>
+                <li>2 pieces bay leaves</li>
+                <li>1 tablespoon white vinegar</li>
+                <li>1 tablespoon brown sugar</li>
+                <li>1 teaspoon salt</li>
+                <li>1 tablespoon oyster sauce</li>
+            </ul>
+
+            <p>Instructions:</p>
+            <ol>
+                <li>Prepare the siomai by combining ground pork, minced shrimp, onion, carrot, green onion, and egg in a bowl. Mix well and then add Knorr Liquid Seasoning, sesame oil, salt, and ground black pepper. Continue mixing until the ingredients are well distributed.</li>
+                <li>Gradually add the cornstarch as needed. Note: this is a binding ingredient that helps absorb moisture from the mixture.</li>
+                <li>Put steamer liners on your steamer. Arrange the siomai on top. Steam for 20 to 30 minutes.</li>
+                <li>Make the chili garlic oil by mincing the garlic and Thai chili pepper in a food processor.</li>
+                <li>Pour 1 1/2 cups of cooking oil in a wok and then add the minced garlic and chili peppers along with star anise and dried bay leaves. Turn on the heat of the stove to the lowest setting. Gradually stir the mixture while cooking for 30 to 45 minutes.</li>
+                <li>Add vinegar, brown sugar, salt, and oyster sauce unto the mixture. Continue cooking for 3 minutes.</li>
+                <li>Remove the star anise and dried bay leaves.</li>
+                <li>Arrange the siomai on a serving plate and top with chili garlic oil then serve with a dipping sauce composed of soy sauce and calamansi.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Egg Fried Rice.png" alt="Egg Fried Rice">
+            <h2>Egg Fried Rice</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>4 eggs</li>
+                <li>4 cups leftover rice</li>
+                <li>1 onion, chopped</li>
+                <li>1/2 bell pepper, chopped</li>
+                <li>3 sweet peppers, chopped</li>
+                <li>2 tablespoons soy sauce</li>
+                <li>1 teaspoon sesame oil</li>
+                <li>3/4 cup green onion, chopped</li>
+                <li>1/4 teaspoon salt</li>
+                <li>1/2 teaspoon sugar</li>
+                <li>4 tablespoons cooking oil</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Crack the eggs and place in a bowl.</li>
+                <li>Heat oil in a wok. Once the oil gets hot, pour the eggs into the wok. Cook until the bottom part turns brown and somewhat crispy. Turn the eggs over and do the same to the other side.</li>
+                <li>Add the peppers and onion. Sauté the ingredients for 1 minute while breaking the eggs apart.</li>
+                <li>Add half of the leftover rice. Stir fry for 2 minutes.</li>
+                <li>Add the remaining rice. Continue cooking until all the ingredients are well blended.</li>
+                <li>Pour the sesame oil and soy sauce. Continue stir frying for 2 minutes.</li>
+                <li>Season with salt and sugar and add the green onions. Toss until well blended.</li>
+                <li>Transfer to a serving plate. Serve with your favorite main dish.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Pork Chop Steak.png" alt="Pork Chop Steak">
+            <h2>Pork Chop Steak</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>4 lbs. pork chop</li>
+                <li>1 piece Knorr Pork Cube</li>
+                <li>½ cup soy sauce</li>
+                <li>1 piece lemon</li>
+                <li>4 pieces yellow onions, sliced into rings</li>
+                <li>10 cloves garlic, crushed and chopped</li>
+                <li>1 teaspoon cornstarch</li>
+                <li>2 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>In a large bowl, combine pork chops, soy sauce, 5 cloves chopped garlic, juice of 1 lemon, and some ground black pepper. Mix it well. Marinate for at least 30 minutes.</li>
+                <li>Heat 1 tablespoon of cooking oil in a pan. Fry the pork chops for around 2 ½ minutes per side. Remove from the pan and set aside.</li>
+                <li>Heat the remaining oil. Sauté half of the onions and the remaining garlic.</li>
+                <li>Add the pork chops once the onion softens. Continue to sauté for 2 minutes.</li>
+                <li>Pour the remaining marinade and water into the pan. Let the liquid boil.</li>
+                <li>Add Knorr Pork Cube. Cover the pan and adjust the heat to the lowest setting. Simmer for 45 to 60 minutes or until the pork chop becomes tender.</li>
+                <li>Combine cornstarch with ¼ cup water. Stir until well blended and then pour the mixture into the pan.</li>
+                <li>Add the remaining onions. Cover the pan and continue cooking for 3 minutes.</li>
+                <li>Transfer to a serving plate. Serve with warm rice.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Lechon Sinigang.png" alt="Lechon Sinigang">
+            <h2>Lechon Sinigang</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs. lechon, cut into serving pieces</li>
+                <li>22 grams Knorr Sinigang sa Sampaloc Original</li>
+                <li>1 piece daikon radish, sliced</li>
+                <li>15 pieces string beans, cut into 2-inch pieces</li>
+                <li>2 pieces eggplants, sliced</li>
+                <li>2 pieces long green peppers</li>
+                <li>10 pieces okra</li>
+                <li>2 pieces onions, wedged</li>
+                <li>2 pieces tomatoes, wedged</li>
+                <li>3 cloves garlic, crushed</li>
+                <li>1 bunch water spinach (kangkong)</li>
+                <li>1 ½ quarts water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat the oil in a cooking pot. Sauté the garlic, onion, and tomato.</li>
+                <li>Once the onion softens, add the lechon. Sauté for 2 minutes.</li>
+                <li>Pour the water into the cooking pot. Cover and let it boil.</li>
+                <li>Add 2 sachets of Knorr Sinigang sa Sampaloc (original). Stir. Cover the pot and continue boiling (using the lowest heat setting of your stove) for 30 minutes.</li>
+                <li>Add the daikon radish. Cook for 5 minutes.</li>
+                <li>Add the long green pepper, okra, string beans, and eggplant. Cover and continue cooking for 5 minutes.</li>
+                <li>Add the water spinach. Cook for 2 minutes.</li>
+                <li>Season with fish sauce and ground black pepper.</li>
+                <li>Transfer to a serving bowl. Serve hot with rice.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Cheesy Lumpiang Shanghai.png" alt="Cheesy Lumpiang Shanghai">
+            <h2>Cheesy Lumpiang Shanghai</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>30 pieces lumpia wrapper</li>
+                <li>2 cups cooking oil</li>
+                <li>2 lbs. ground pork</li>
+                <li>8 pieces Mozzarella string cheese</li>
+            </ul>
+            <p>Filling Ingredients:</p>
+            <ul>
+                <li>1 piece onion, minced</li>
+                <li>2 teaspoons Knorr Liquid Seasoning</li>
+                <li>1 cup carrot, minced</li>
+                <li>4 tablespoons cornstarch</li>
+                <li>1 egg</li>
+                <li>Ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine ground pork with the filling ingredients. Add Knorr Liquid seasoning. Mix everything together.</li>
+                <li>Wrap the lumpia by laying a sheet of lumpia wrapper on a clean flat surface. Scoop around 1 ½ tablespoons of mixture and spread it on one side of the wrapper. Put the sliced string cheese over and cover it completely with the meat mixture. Fold the sides of the wrapper inward, roll it, and secure the ends. Perform this step until the entire meat mixture is consumed.</li>
+                <li>Cook the lumpia by heating the remaining oil in a wok. Deep fry using medium heat setting until the lumpia turns golden brown.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Filipino Spaghetti.png" alt="Filipino Spaghetti">
+            <h2>Filipino Spaghetti</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb. spaghetti</li>
+                <li>1 lb. ground pork</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>3 tablespoons liver spread</li>
+                <li>12 hotdogs, sliced</li>
+                <li>35 ounces Filipino Style Spaghetti Sauce</li>
+                <li>1 tablespoon all-purpose flour</li>
+                <li>1 cup water</li>
+                <li>1 onion, minced</li>
+                <li>3 cloves garlic, minced</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Cook the spaghetti noodles (al dente) according to package instructions. Once cooked, drain the water, and then transfer the spaghetti to a bowl. Cover it and set aside.</li>
+                <li>Heat the oil in a pan. Sauté the onion and garlic.</li>
+                <li>Once the onions soften, add the ground pork. Cook until the color turns light brown.</li>
+                <li>Add the hotdog. Continue sautéing for 30 seconds.</li>
+                <li>Add the flour. Continue cooking for 1 minute.</li>
+                <li>Pour-in the spaghetti sauce and water into the pan. Stir continuously until the texture of the sauce smoothens. Cover the pan. Let it boil.</li>
+                <li>Add Knorr Pork Cube. Cook for 15 to 18 minutes or until the sauce gets thick enough.</li>
+                <li>Add the liver spread and season with salt and ground black pepper as needed.</li>
+                <li>Add the cooked spaghetti into the pan. Toss until it completely gets coated with the sauce.</li>
+                <li>Top with shredded cheddar cheese.</li>
+            </ol>
+        </div>
+
+         
+        <div class="food-card">
+            <img src="Ginisang Puso Ng Saging.png" alt="Ginisang Puso Ng Saging">
+            <h2>Ginisang Puso Ng Saging</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 banana heart</li>
+                <li>8 ounces pork, thinly sliced</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>2 ounces vermicelli (sotanghon)</li>
+                <li>1 onion</li>
+                <li>3 cloves garlic</li>
+                <li>½ cup white vinegar</li>
+                <li>5 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>1 tablespoon salt</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Clean the banana heart and slice it into thin pieces. Combine ½ cup vinegar and 1 cup of water in a large bowl. Put the sliced banana heart into the mixture. Rub the salt onto it and soak for 10 to 20 minutes. Drain the liquid mixture and then wring the banana hearts (a chunk at a time) to force the liquid to come out. Set aside.</li>
+                <li>Soak the vermicelli in 2 cups of water for 12 minutes. Drain the water and then set the vermicelli aside.</li>
+                <li>Heat the oil in a pan. Sauté the garlic and onion until the latter softens.</li>
+                <li>Add the pork slices. Continue to cook until it browns.</li>
+                <li>Pour 1 cup of water into the pan. Cover it and let the water boil. Adjust the heat between low to medium heat setting. Cook until the liquid completely evaporates.</li>
+                <li>Add the sliced banana hearts. Sauté it for 2 minutes.</li>
+                <li>Pour the remaining 1 cup of water into the pan. Let it boil. Add Knorr Pork Cube. Cover and cook until the water reduces to half. Note: you can add more water if the banana heart slices need to be cooked further to soften.</li>
+                <li>Remove the cover and season with fish sauce and ground black pepper as needed.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Crispy Fried Chicken.png" alt="Crispy Fried Chicken">
+            <h2>Crispy Fried Chicken</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 lbs. chicken, cut into individual pieces</li>
+                <li>1 tablespoon salt</li>
+                <li>3 cups cooking oil</li>
+                <li>1 cup all-purpose flour</li>
+            </ul>
+            <p>Batter Ingredients:</p>
+            <ul>
+                <li>¾ cup evaporated milk</li>
+                <li>1 Knorr Chicken Cube</li>
+                <li>2 eggs</li>
+                <li>¾ cups all-purpose flour</li>
+                <li>1 teaspoon baking powder</li>
+                <li>2 teaspoons garlic powder</li>
+                <li>½ teaspoon salt</li>
+                <li>¼ teaspoon ground black pepper</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Rub salt all over the chicken. Let it stay for 15 minutes.</li>
+                <li>Heat the oil in a cooking pot.</li>
+                <li>Prepare the batter. Start by pressing a fork on the chicken cube until it is completely squashed. Combine it with warm milk. Stir until well blended. Set aside.</li>
+                <li>Combine flour, baking powder, garlic powder, salt, and ground black pepper. Mix well using a fork or a wire whisk. Set aside.</li>
+                <li>Beat the eggs in a large mixing bowl. Add the milk mixture. Continue to beat until all the ingredients are incorporated. Add half of flour mixture. Whisk. Add the remaining half and whisk until the texture of the batter becomes smooth.</li>
+                <li>Dredge the chicken in flour and then dip in batter. Roll it again in flour until completely covered. Fry in medium heat for 7 minutes per side.</li>
+                <li>Remove from the pot and put on a plate lined with paper towel. This will absorb the oil.</li>
+                <li>Serve with ketchup or gravy.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Nilagang Pata.png" alt="Nilagang Pata">
+            <h2>Nilagang Pata</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>4 lbs. pork hock</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>3 potatoes, quartered</li>
+                <li>2 ears sweet corn</li>
+                <li>½ head cabbage</li>
+                <li>2 bunches baby bok choy</li>
+                <li>½ lb. long green beans</li>
+                <li>2 onions, quartered</li>
+                <li>2 teaspoons whole peppercorn</li>
+                <li>8 cups water</li>
+                <li>Fish sauce to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Clean the pork hocks thoroughly. Set aside.</li>
+                <li>Pour the water into a large cooking pot. Let it boil.</li>
+                <li>Add the pork hocks. Cover and cook for 10 minutes.</li>
+                <li>Skim off the scum from the surface and then add Knorr Pork cube, onion, and whole peppercorn. Cover, adjust the heat to the lowest setting. Simmer until the pork tenderizes completely. Note: this can take between 60 to 90 minutes.</li>
+                <li>Adjust the heat between low and medium setting. Add the corn and potatoes. Cook for 10 minutes.</li>
+                <li>Add the long green beans, bok choy, and cabbage. Continue boiling for 3 to 5 minutes.</li>
+                <li>Season with fish sauce. Transfer to a serving bowl. Serve hot with rice.</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Kangkong and Ground Pork with Oyster Sauce Stir Fry.png" alt="Kangkong and Ground Pork with Oyster Sauce Stir Fry">
+            <h2>Kangkong and Ground Pork</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>¾ lbs. water spinach</li>
+                <li>¼ lb. ground pork</li>
+                <li>3 tablespoons oyster sauce</li>
+                <li>1 onion, minced</li>
+                <li>1 head garlic, crushed</li>
+                <li>¼ cup water</li>
+                <li>8 tablespoons cooking oil</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Brown the garlic by slowly frying it in oil until it turns golden brown. Do this by heating the oil in a pan. After around 20 seconds, add the crushed garlic. Stir and fry using a low to medium heat setting until it browns. Separate the garlic with the oil. Set aside. Note: This is an optional step. The browned garlic can be used as a topping or condiment for this dish and for other dishes too.</li>
+                <li>Using 3 tablespoons of the oil used to fry the garlic, sauté the onion until it softens.</li>
+                <li>Add the ground pork. Sauté for 3 to 5 minutes or until the pork turns light brown.</li>
+                <li>Add oyster sauce and water. Stir and cook until the water evaporates completely.</li>
+                <li>Put the water spinach stalks into the pan. Stir fry for 2 minutes.</li>
+                <li>Add the water spinach leaves and a portion of the browned garlic. Cook for 1 minute. Note: you may add up to ½ cup of water if you like this with a bit of sauce.</li>
+                <li>Season with salt and ground black pepper. Arrange on a serving plate and top with more browned garlic.</li>
+                <li>Serve with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Chicken Afritada sa Gata.png" alt="Chicken Afritada sa Gata">
+            <h2>Chicken Afritada sa Gata</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>4 lbs. chicken, sliced into serving pieces</li>
+                <li>40 grams Knorr Ginataang Gulay Recipe Mix</li>
+                <li>1 Knorr Chicken Cube</li>
+                <li>3 potatoes</li>
+                <li>4 carrots</li>
+                <li>3 bell peppers</li>
+                <li>¾ cup green peas</li>
+                <li>1 onion, chopped</li>
+                <li>6 cloves garlic</li>
+                <li>8 ounces tomato sauce</li>
+                <li>8 hotdogs</li>
+                <li>2 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat oil in a pan. Sauté garlic and onion.</li>
+                <li>Add the chicken. Sauté until it turns light brown in color.</li>
+                <li>Add tomato sauce, hotdogs, and water. Let it boil.</li>
+                <li>Combine Knorr Ginataang Gulay Recipe Mix with 2 cups water. Mix well and then pour it into the pan. Cover and cook for 45 minutes using low heat.</li>
+                <li>Add Knorr Chicken Cube, potatoes, and carrots. Cook for 8 minutes.</li>
+                <li>Add the green peas and bell peppers. Cook for 3 minutes.</li>
+                <li>Season with salt and ground black pepper.</li>
+                <li>Serve with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Pork Binagoongan sa Gata.png" alt="Pork Binagoongan sa Gata">
+            <h2>Pork Binagoongan sa Gata</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 lbs. pork belly, cubed</li>
+                <li>40 grams Knorr Ginataang Gulay Recipe Mix</li>
+                <li>4 tablespoons shrimp paste</li>
+                <li>3 cups water</li>
+                <li>1 eggplant, sliced</li>
+                <li>1 tomato, chopped</li>
+                <li>1 onion, minced</li>
+                <li>5 cloves garlic, minced</li>
+                <li>2 tablespoons white vinegar</li>
+                <li>1 teaspoon sugar</li>
+                <li>3 long green chili peppers, sliced</li>
+                <li>5 tablespoons cooking oil</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat a pan and then sear the pork belly. Remove the belly from the pan and set it aside.</li>
+                <li>Add 2 tablespoons of cooking oil in the same pan. Fry the eggplants for 2 minutes per side. Remove and set aside.</li>
+                <li>Heat remaining oil in a pan. Sauté garlic, onion, and tomato. Add the shrimp paste (bagoong alamang) and cook it for 2 minutes.</li>
+                <li>Add the seared pork back once the onion softens. Cook for 1 minute.</li>
+                <li>Pour water and let the mixture boil. Adjust the heat to a low setting. Cook for 35 minutes.</li>
+                <li>Combine Knorr Ginataang Gulay Mix with 1 cup water. Pour the mixture into the pot. Add vinegar. Cover and continue cooking until the pork becomes tender.</li>
+                <li>Add the fried eggplants, long green peppers, along with a teaspoon of sugar. Cook for 2 minutes.</li>
+                <li>Season with fish sauce and ground black pepper. Serve with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Pork Belly Asado.png" alt="Pork Belly Asado">
+            <h2>Pork Belly Asado</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 lbs. pork belly</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>¼ cup banana ketchup</li>
+                <li>3 tablespoons soy sauce</li>
+                <li>3 tablespoons brown sugar</li>
+                <li>2 teaspoons cornstarch</li>
+                <li>8 cloves garlic, minced</li>
+                <li>1 onion, minced</li>
+                <li>2 star anise</li>
+                <li>2 tablespoons butter</li>
+                <li>4 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine pork belly, ketchup, soy sauce, and garlic. Mix well. Marinate overnight.</li>
+                <li>Heat oil in a pot. Sauté onion until it softens.</li>
+                <li>Add marinated pork. Sauté until it browns.</li>
+                <li>Pour water into the pan. Let it boil.</li>
+                <li>Add Knorr Pork cube and star anise. Cover and continue cooking for 1 hour.</li>
+                <li>Add brown sugar and butter. Stir.</li>
+                <li>Make a slurry by combining cornstarch with ¼ cup water. Mix well. Pour the mixture into the pot. Cook until the sauce thickens.</li>
+                <li>Season with salt and ground black pepper.</li>
+                <li>Serve with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Beef Nilaga.png" alt="Beef Nilaga">
+            <h2>Beef Nilaga</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 lbs. beef neck bone</li>
+                <li>1 Knorr Beef Cube</li>
+                <li>3 corn on the cob, cut in half</li>
+                <li>2 potatoes, quartered</li>
+                <li>18 long green beans</li>
+                <li>½ head cabbage</li>
+                <li>1 bunch bok choy</li>
+                <li>6 cups water</li>
+                <li>1 onion, chopped</li>
+                <li>4 cloves garlic, crushed</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Grill the beef neck bones for 1 1/2 minutes per side. Remove from the grill and set aside.</li>
+                <li>Meanwhile, heat cooking oil and sauté the garlic and onion.</li>
+                <li>Once the onion softens, add the beef. Sauté for 2 minutes.</li>
+                <li>Pour water into the pot. Let it boil. Cover and continue cooking using low heat setting until the meat gets tender. Note: add more water as needed.</li>
+                <li>Add Knorr Beef Cube and corn. Cover the pot. Cook for 8 minutes.</li>
+                <li>Add potatoes. Cook for 6 minutes.</li>
+                <li>Add the long green beans, cabbage, and bok choy. Continue cooking for 3 minutes.</li>
+                <li>Season with fish sauce and ground black pepper.</li>
+                <li>Transfer to a serving bowl. Serve hot. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Kinamatisang Manok.png" alt="Kinamatisang Manok">
+            <h2>Kinamatisang Manok</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb. chicken, cut into serving pieces</li>
+                <li>4 tomatoes, sliced into wedges</li>
+                <li>1 Knorr Chicken Cube</li>
+                <li>2 bunches bok choy</li>
+                <li>3 long green chili peppers</li>
+                <li>1 onion, sliced</li>
+                <li>3 thumbs ginger, crushed</li>
+                <li>3 cloves garlic, chopped</li>
+                <li>2 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat oil in a cooking pot. Sauté garlic until it starts to brown.</li>
+                <li>Add onion and ginger. Continue cooking until the onion softens.</li>
+                <li>Put the chicken pieces into the pot. Cook each side for 1 minute.</li>
+                <li>Stir in half of the tomatoes. Cook for 2 minutes.</li>
+                <li>Pour the water and let it boil.</li>
+                <li>Add Knorr Chicken Cube and 2 teaspoons of fish sauce. Cover the pot and adjust the heat to low setting. Boil the chicken for 20 minutes.</li>
+                <li>Add remaining tomatoes, long green pepper, and bok choy. Cover and cook for 3 minutes.</li>
+                <li>Season with ground black pepper and fish sauce as needed.</li>
+                <li>Serve warm with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+         
+        <div class="food-card">
+            <img src="Pinoy Burger Steak Recipe.png" alt="Pinoy Burger Steak Recipe">
+            <h2>Pinoy Burger Steak Recipe</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>6 patties CDO Ulam Burger</li>
+                <li>3 tablespoons toasted garlic</li>
+                <li>1 tablespoon parsley, chopped</li>
+                <li>1 tablespoon cooking oil</li>
+            </ul>
+            <p>Mushroom Gravy Ingredients:</p>
+            <ul>
+                <li>3/4 cup button mushroom</li>
+                <li>3 tablespoons butter</li>
+                <li>4 tablespoons all-purpose flour</li>
+                <li>1 beef bouillon</li>
+                <li>1 teaspoon Worcestershire sauce</li>
+                <li>1 3/4 cup water</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat oil in a pan. Fry the CDO Ulam Burger Patties until both sides are completely cooked. Set aside.</li>
+                <li>Make the mushroom gravy by melting the butter in a saucepan. Add the mushrooms and sauté for 1 minute. Add flour and stir until the texture becomes lumpy. Pour water. Stir until the gravy smoothens. Add beef bouillon and season with Worcestershire sauce, salt, and ground black pepper.</li>
+                <li>Arrange 3 burger patties on each plate with 1 cup cooked rice. Top with mushroom gravy and garnish with toasted garlic and chopped parsley. Serve. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Corned Beef Saute.png" alt="Corned Beef Saute">
+            <h2>Corned Beef Saute</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>300 grams CDO Home Style Corned Beef</li>
+                <li>1 carrot, cubed</li>
+                <li>1/4 cup whole kernel corn</li>
+                <li>1/4 cup green peas</li>
+                <li>3 cloves garlic, chopped</li>
+                <li>1 onion, chopped</li>
+                <li>2 tablespoons butter</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Melt butter in a pan. Saute garlic and onion until the onion softens.</li>
+                <li>Add CDO Home Style Corned Beef. Saute for 1 minute.</li>
+                <li>Add carrot, corn, and green peas. Continue cooking for 3 to 5 minutes.</li>
+                <li>Season with salt and ground black pepper. Serve with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Crispy Pata Kare-Kare.png" alt="Crispy Pata Kare-Kare">
+            <h2>Crispy Pata Kare-Kare</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>4 lbs. pork hock (pata)</li>
+                <li>2 teaspoons salt</li>
+                <li>3 cups cooking oil</li>
+                <li>1/2 cup shrimp paste</li>
+            </ul>
+            <p>Boiling Ingredients:</p>
+            <ul>
+                <li>3 quarts water</li>
+                <li>1 tablespoon salt</li>
+                <li>7 dried bay leaves</li>
+                <li>1 tablespoon whole peppercorn</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Kare-Kare Sauce:</p>
+            <ul>
+                <li>1 1/4 cup peanut paste</li>
+                <li>1 piece Knorr Pork Cube</li>
+                <li>2 tablespoons annatto powder</li>
+                <li>1 onion, chopped</li>
+                <li>4 cloves garlic, minced</li>
+                <li>2 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Salt and ground black pepper to taste</li>
+            </ul>
+            <p>Vegetable Ingredients:</p>
+            <ul>
+                <li>2 bunches bok choy</li>
+                <li>2 eggplants, sliced</li>
+                <li>10 string beans, cut in 2-inch pieces</li>
+                <li>18 ounces banana blossom in brine (canned)</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine all the boiling ingredients in a large cooking pot. Add pork hock. Boil for 1 hour. Remove the pork hock from the cooking pot. Let it cool down and then rub salt all over. Air dry for 30 minutes.</li>
+                <li>Heat oil in a pan. Sauté garlic and onion. Once the onion softens, add the peanut paste. Stir and cook for 1 minute. Pour water and then stir until the mixture becomes smooth. Let the liquid boil. Add Knorr Pork Cube and annatto powder. Cover the pot. Reduce the heat to a simmer. Continue cooking until your desired consistency is achieved. Season with salt and ground black pepper. Set aside.</li>
+                <li>Heat oil in a wide and deep pot. Fry the pork hock until the bottom side turns golden brown and crispy. Turn it over and do the same thing on the opposite side. Remove from the pot. Let it cool down. Debone the pork hock. Set aside.</li>
+                <li>Arrange the vegetable ingredients on a steamer. Steam for 3 to 5 minutes. Set aside.</li>
+                <li>Assemble your crispy pata kare-kare by pouring half of the sauce on a serving bowl. Arrange the steamed vegetables all around. Top with crispy pata. Distribute the remaining sauce by pouring onto the bowl. Serve with shrimp paste (bagoong alamang) as a condiment. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Crispy Pata Dinakdakan.png" alt="Crispy Pata Dinakdakan">
+            <h2>Crispy Pata Dinakdakan</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 ounces pork liver</li>
+                <li>2 onions, sliced</li>
+                <li>½ cup green onions, chopped</li>
+                <li>3 Thai chili peppers, chopped</li>
+                <li>1 ½ teaspoons salt</li>
+            </ul>
+            <p>Pork Hock Boiling Ingredients:</p>
+            <ul>
+                <li>4 lbs. pork hock (pata)</li>
+                <li>2 teaspoons whole peppercorn</li>
+                <li>3 bay leaves</li>
+                <li>6 cups water</li>
+            </ul>
+            <p>Dressing Ingredients:</p>
+            <ul>
+                <li>¾ cup Lady’s Choice Mayonnaise</li>
+                <li>2 tablespoons Knorr Liquid Seasoning</li>
+                <li>3 tablespoons white vinegar</li>
+                <li>¼ teaspoon ground black pepper</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Tenderize the pork hock by combining all the pork hock boiling ingredients in a cooking pot. Cover and boil between low to medium heat setting for 80 minutes. Drain the liquid and let the pork cool down to room temperature. Debone the pork hock using a sharp knife. Set aside (note: You may discard the bones.).</li>
+                <li>Rub 2 teaspoons of salt all over the skin of the pork.</li>
+                <li>Prepare the dressing by combining all the dressing ingredients in a bowl. Stir until smooth.</li>
+                <li>Rub 1 teaspoon salt all over the liver. Heat the cooking oil in a pan. Fry both sides of the liver until it browns. Remove from the pan and slice into serving pieces. Set aside.</li>
+                <li>Heat oil in a deep cooking pot. Fry the pata until golden brown and crispy. Remove from the pot and let it cool down.</li>
+                <li>Chop the crispy pata into bite-size pieces. Put it in a large mixing bowl, add the fried liver, and add the dressing, onion, green onion, and chili peppers. Toss until well blended.</li>
+                <li>Transfer to a serving plate. Serve. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Garlic Pepper Beef.png" alt="Garlic Pepper Beef">
+            <h2>Garlic Pepper Beef</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb. beef sirloin</li>
+                <li>5 cloves garlic, minced</li>
+                <li>1/2 Knorr beef cube</li>
+                <li>1 tablespoon butter</li>
+                <li>1 cup water</li>
+                <li>4 tablespoons canola oil</li>
+            </ul>
+            <p>Marinade Ingredients:</p>
+            <ul>
+                <li>2 tablespoons soy sauce</li>
+                <li>1 tablespoon oyster sauce</li>
+                <li>1/2 teaspoon ground black pepper</li>
+                <li>1 teaspoon garlic powder</li>
+                <li>1 tablespoon cornstarch</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine beef sirloin and all the marinade ingredients. Mix well. Let it stay for at least 10 minutes.</li>
+                <li>Meanwhile, make the toasted garlic by heating oil in a pan. Add the garlic. Cook in a low heat setting until golden brown. Filter the garlic using a kitchen strainer. Set the toasted garlic and garlic oil aside.</li>
+                <li>Heat the garlic oil on the same pan.</li>
+                <li>Fry both sides of the marinated beef until it browns. Remove the fried beef from the pan. Set aside.</li>
+                <li>Combine butter with the remaining oil. Let it melt. Add half of the Knorr beef cube.</li>
+                <li>Add the fried beef back into the pan. Stir fry for 30 seconds.</li>
+                <li>Pour water. Let boil. Stir and continue cooking until the sauce thickens to your desired consistency.</li>
+                <li>Sprinkle toasted garlic on top.</li>
+                <li>Transfer to a serving bowl. Serve with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Pinoy Chicken Sopas.png" alt="Pinoy Chicken Sopas">
+            <h2>Pinoy Chicken Sopas</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb. rotisserie chicken, shredded</li>
+                <li>2 Knorr Chicken Cubes</li>
+                <li>¾ cup hotdog, cubed</li>
+                <li>1 cup cabbage, sliced</li>
+                <li>3 stalks celery, diced</li>
+                <li>1 carrot, minced</li>
+                <li>1 cup evaporated milk</li>
+                <li>8 ounces elbow macaroni</li>
+                <li>1 onion, minced</li>
+                <li>3 cloves garlic, minced</li>
+                <li>8 cups water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat cooking oil in a cooking pot. Sauté onion, garlic, and celery for 1 minute.</li>
+                <li>Add the shredded chicken, hot dogs, and 1 tablespoon of fish sauce. Cook for 1 minute.</li>
+                <li>Pour the water and let it boil.</li>
+                <li>Add Knorr chicken cube. Cover the cooking pot. Adjust the heat of your stove to the lowest setting. Cook for 10 minutes.</li>
+                <li>Add elbow macaroni. Continue cooking for 18 minutes.</li>
+                <li>Add cabbage and evaporated milk.</li>
+                <li>Season with ground black pepper and fish sauce if needed.</li>
+                <li>Serve hot. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Chicken Mechado.png" alt="Chicken Mechado">
+            <h2>Chicken Mechado</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs. chicken, cut into serving pieces</li>
+                <li>1 Knorr Chicken Cube</li>
+                <li>2 potatoes, sliced</li>
+                <li>3 tablespoons soy sauce</li>
+                <li>1 lemon</li>
+                <li>8 ounces tomato sauce</li>
+                <li>1 bell pepper (optional)</li>
+                <li>1 cup water</li>
+                <li>3 laurel leaves</li>
+                <li>1 onion, chopped</li>
+                <li>3 cloves garlic, chopped</li>
+                <li>½ teaspoon sugar</li>
+                <li>Salt and ground black pepper to taste</li>
+                <li>4 tablespoons cooking oil</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat oil in a pan. Fry the potatoes for 3 minutes per side. Remove from the pan. Set aside.</li>
+                <li>Sauté onion and garlic until the former softens.</li>
+                <li>Add chicken pieces. Sauté for 3 to 4 minutes.</li>
+                <li>Add the soy sauce. Cook for 1 minute.</li>
+                <li>Add tomato sauce and water. Let it boil.</li>
+                <li>Add Knorr Chicken Cube and laurel leaves. Cover the pan. Adjust the heat to the lowest setting. Continue cooking for 40 minutes.</li>
+                <li>Add lemon zest and bell pepper. Cook for 3 minutes.</li>
+                <li>Put the sugar and fried potato in the pot. Cook for 2 minutes.</li>
+                <li>Season with salt and ground black pepper.</li>
+                <li>Serve warm with rice. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Igado Recipe.png" alt="Igado Recipe">
+            <h2>Igado Recipe</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1/2 lb. pork tenderloin, sliced into 2-inch strips</li>
+                <li>1/2 lb. pork liver, sliced into 2-inch strips</li>
+                <li>1/2 lb. pork kidney</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>1 red bell pepper, cut into strips</li>
+                <li>1/2 cup green peas</li>
+                <li>1 carrot, julienned</li>
+                <li>3 laurel leaves</li>
+                <li>1 onion, minced</li>
+                <li>5 cloves garlic, minced</li>
+                <li>6 tablespoons soy sauce</li>
+                <li>5 tablespoons white vinegar</li>
+                <li>1 1/4 cup water</li>
+                <li>4 tablespoons cooking oil</li>
+                <li>Salt and pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Boil the kidney with 4 thumbs of ginger for at least 30 minutes. Let it cool down and slice into 2-inch strips. Set aside.</li>
+                <li>Heat 2 tablespoons of cooking oil in a pan. Sauté the pork liver for 2 minutes. Remove from the pan and set aside.</li>
+                <li>Pour the remaining oil in the pan. Once hot, sauté garlic and onion until the latter softens.</li>
+                <li>Add the pork kidney. Cook for 1 minute.</li>
+                <li>Add the pork tenderloin. Sauté until the outer layer turns light brown.</li>
+                <li>Pour the soy sauce and vinegar into the pan. Let the liquid boil. Stir.</li>
+                <li>Add the laurel leaves and pour water. Let boil. Reduce the heat between low to medium setting. Continue cooking for 40 minutes.</li>
+                <li>Add Knorr Pork Cube. Cook for 8 minutes.</li>
+                <li>Add the liver back into the pan. Stir and continue cooking for 3 minutes.</li>
+                <li>Put the bell pepper, carrot, and green peas.</li>
+                <li>Season with salt and ground black pepper. Cook for 2 minutes.</li>
+                <li>Transfer to a serving bowl. Serve hot with rice.</li>
+                <li>Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Sinigang.png" alt="Sinigang">
+            <h2>Sinigang</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs. pork belly</li>
+                <li>1 lb. young tamarind</li>
+                <li>1 bunch water spinach, chopped</li>
+                <li>8 pieces string beans, cut into 2-inch pieces</li>
+                <li>2 pieces eggplants, sliced</li>
+                <li>1 piece daikon radish (see notes)</li>
+                <li>8 pieces okras</li>
+                <li>2 pieces tomatoes, sliced into wedges</li>
+                <li>2 pieces long green pepper</li>
+                <li>1 piece onion, sliced into wedges</li>
+                <li>2 quarts water</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Boil the young tamarind in 2 quarts of water for 40 minutes. Filter the tamarind broth using a kitchen sieve or a strainer. Squeeze the tamarind afterwards to extract its remaining juices.</li>
+                <li>Pour the tamarind broth into a cooking pot. Let it boil and then add the onion, pork belly, and half the amount of the tomatoes.</li>
+                <li>Skim-off the floating scums, pour 1 tablespoon fish sauce, cover and continue to simmer for 1 hour.</li>
+                <li>Add daikon radish and eggplants. Cook for 5 minutes.</li>
+                <li>Add the long green pepper, string beans, remaining tomatoes, and okra. Cook for 3 minutes.</li>
+                <li>Add the chopped water spinach stalks and season with fish sauce and ground black pepper. Cook for 2 minutes.</li>
+                <li>Put the water spinach leaves. Cover and turn the heat off. Let the residual heat cook the leaves for 3 minutes before serving.</li>
+            </ol>
+        </div>
+
+         
+        <div class="food-card">
+            <img src="Pinoy Chicken Curry.png" alt="Pinoy Chicken Curry ">
+            <h2>Pinoy Chicken Curry</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs. chicken, cut into serving pieces</li>
+                <li>1 tablespoon curry powder</li>
+                <li>1 piece potato, cubed</li>
+                <li>4 cloves garlic, minced</li>
+                <li>2 stalks celery, sliced</li>
+                <li>1 piece red bell pepper, sliced</li>
+                <li>2 pieces long green pepper</li>
+                <li>1 piece onion, chopped</li>
+                <li>2 thumbs ginger, cut into strips</li>
+                <li>2 cups coconut milk</li>
+                <li>1/2 cup all-purpose cream (optional)</li>
+                <li>1 cup water</li>
+                <li>Fish sauce and ground black pepper to taste</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Heat oil in a pan. Fry potato for 1 minute per side. Remove from the pan. Set aside.</li>
+                <li>Using the remaining oil, sauté garlic, onion, celery, and ginger until onion softens.</li>
+                <li>Add the chicken pieces. Sauté until the outer part of the chicken turns light brown.</li>
+                <li>Add 1 tablespoon fish sauce. Continue sautéing for 1 minute.</li>
+                <li>Pour-in coconut milk and water. Let boil.</li>
+                <li>Add curry powder. Stir until the powder is completely diluted. Cover the pot and continue cooking between low to medium heat until the liquid reduces to half.</li>
+                <li>Add the red bell pepper and pan-fried potato. Cook for 5 minutes.</li>
+                <li>Season with fish sauce and ground black pepper as needed. You can also add all-purpose cream if desired.</li>
+                <li>Transfer to a serving bowl. Serve and enjoy!</li>
+            </ol>
+        </div>
+
+        
+        <div class="food-card">
+            <img src="Bopis Recipe.png" alt="Bopis Recipe">
+            <h2>Bopis Recipe</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>3 lbs pork lungs</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>5 dried bay leaves</li>
+                <li>2 carrots, diced</li>
+                <li>3 thumbs ginger, minced</li>
+                <li>1 tablespoon annatto powder</li>
+                <li>3 Thai chili peppers, chopped</li>
+                <li>1 onion, diced</li>
+                <li>5 cloves garlic, minced</li>
+                <li>5 tablespoons vinegar</li>
+                <li>2 ½ cups water</li>
+                <li>¼ teaspoon ground black pepper</li>
+                <li>4 tablespoons cooking oil</li>
+                <li>Fish sauce to taste</li>
+            </ul>
+            <p>Boiling Ingredients:</p>
+            <ul>
+                <li>8 cups water</li>
+                <li>5 dried bay leaves</li>
+                <li>25 g sibot</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>In a large pot, boil 8 cups of water and then add the rest of the boiling ingredients. Put the pig’s lungs into the pot and continue boiling for 1 hour. Remove the lungs, let it cool down, and then dice into small pieces. Set aside.</li>
+                <li>Heat oil in a clean pot. Sauté garlic, onion, and ginger.</li>
+                <li>Add the diced lungs once the onion softens. Cook for 3 minutes while stirring.</li>
+                <li>Add vinegar. Cook for 2 minutes.</li>
+                <li>Pour 2 ½ cups of water into the pot. Let it boil.</li>
+                <li>Add Knorr Pork cube and bay leaves. Stir. Cover the pot and adjust the heat between low to medium setting. Continue cooking until the liquid reduces to half.</li>
+                <li>Add the carrot, chili pepper, and annatto powder. Cook for 3 minutes.</li>
+                <li>Season with ground black pepper and fish sauce.</li>
+                <li>Transfer to a serving plate. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Bagnet Pancit Canton.png" alt="Bagnet Pancit Canton">
+            <h2>Bagnet Pancit Canton</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb. bagnet, sliced</li>
+                <li>12 shrimp, cleaned</li>
+                <li>8 Shiitake mushrooms, sliced in half</li>
+                <li>1 carrot, Julienne</li>
+                <li>½ head cabbage, chopped</li>
+                <li>2 leaves Napa cabbage, sliced</li>
+                <li>12 snow peas</li>
+                <li>1 red bell pepper, Julienne</li>
+                <li>1 green bell pepper, Julienne</li>
+                <li>2 tablespoons parsley, minced</li>
+                <li>1 onion, thinly sliced</li>
+                <li>5 cloves garlic, crushed</li>
+                <li>¼ cup soy sauce</li>
+                <li>2 tablespoons oyster sauce</li>
+                <li>¼ cup water</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Ground black pepper to taste</li>
+            </ul>
+            <p>Noodle Ingredients:</p>
+            <ul>
+                <li>½ lb. Egg noodles pancit canton</li>
+                <li>1 Knorr Pork Cube</li>
+                <li>6 cups water</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Prepare the egg noodles by boiling 6 cups of water in a cooking pot. Add Knorr Pork Cube. Stir until diluted. Put the egg noodles into the pot and toss. Continue cooking until the noodles are soft but not mushy. Set aside.</li>
+                <li>Heat oil in a clean pot. Sauté onion and garlic.</li>
+                <li>Once the onion softens, add mushrooms, carrot, cabbage, snow peas, bell peppers, and parsley. Cook for 30 seconds.</li>
+                <li>Add shrimp. Toss and cook until the shrimp turns orange in color.</li>
+                <li>Add Napa cabbage, soy sauce, oyster sauce, and ¼ cup water. Toss and cook for 1 minute.</li>
+                <li>Put the egg noodles back into the pot. Toss until all the ingredients are well blended.</li>
+                <li>Season with ground black pepper and top with bagnet slices.</li>
+                <li>Serve warm. Share and enjoy!</li>
+            </ol>
+            
+        </div>
+
+
+        <div class="food-card">
+            <img src="Bibingka Recipe.png" alt="Bibingka Recipe">
+            <h2>Bibingka Recipe</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 cup rice flour</li>
+                <li>1/8 teaspoon salt</li>
+                <li>2 1/2 teaspoons baking powder</li>
+                <li>3 tablespoons butter</li>
+                <li>1/2 cup granulated sugar</li>
+                <li>1 cup coconut milk</li>
+                <li>1/4 cup fresh milk</li>
+                <li>1 piece salted duck egg, sliced</li>
+                <li>1/2 cup grated cheese</li>
+                <li>3 pieces raw eggs</li>
+                <li>1/4 cup grated coconut</li>
+                <li>Pre-cut banana leaf</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Preheat oven to 375 degrees Fahrenheit.</li>
+                <li>Combine rice flour, baking powder, and salt then mix well. Set aside.</li>
+                <li>Cream butter then gradually add sugar while whisking.</li>
+                <li>Add the eggs then whisk until every ingredient is well incorporated.</li>
+                <li>Gradually add the rice flour, salt, and baking powder mixture then continue mixing.</li>
+                <li>Pour-in coconut milk and fresh milk then whisk some more for 1 to 2 minutes.</li>
+                <li>Arrange the pre-cut banana leaf on a cake pan or baking pan.</li>
+                <li>Pour the mixture on the pan.</li>
+                <li>Bake for 15 minutes.</li>
+                <li>Remove from the oven then top with sliced salted egg and grated cheese (do not turn the oven off).</li>
+                <li>Put back in the oven and bake for 15 to 20 minutes or until the color of the top turns medium brown.</li>
+                <li>Remove from the oven and let cool.</li>
+                <li>Brush with butter and top with grated coconut.</li>
+                <li>Serve. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Biko.png" alt="biko">
+            <h2>Biko</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 cups glutinous rice (aka sticky rice or malagkit)</li>
+                <li>1 1/2 cups water</li>
+                <li>2 cups brown sugar</li>
+                <li>4 cups coconut milk</li>
+                <li>1/2 tsp salt</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Combine the sticky rice and water in a rice cooker and cook until the rice is ready (intentionally using less water than usual to prevent the rice from fully cooking).</li>
+                <li>While the rice is cooking, combine the coconut milk with brown sugar and salt in a separate pot and cook over low heat until the mixture thickens, stirring constantly.</li>
+                <li>Once the rice is cooked and the coconut milk-sugar mixture is thick enough, add the cooked rice to the coconut milk and sugar mixture, then mix well. Continue cooking until all the liquid evaporates, being careful not to overcook.</li>
+                <li>Scoop the cooked biko and place it on a serving plate, then flatten the surface.</li>
+                <li>Share and Enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="yema.png" alt="yema">
+            <h2>Yema</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>28 ounces condensed milk (equivalent to 2 cans)</li>
+                <li>3 tablespoons peanuts, roasted</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Chop the peanuts. Set aside.</li>
+                <li>Pour condensed milk into a cooking pot. Let it boil, stirring constantly for 10 minutes.</li>
+                <li>Lower the heat. Add chopped peanuts. Continue cooking while stirring for another 10 minutes or until the consistency becomes paste-like.</li>
+                <li>Transfer the yema mixture to a bowl.</li>
+                <li>Start wrapping the yema candies individually in pre-cut cellophane. (Note: The dimensions of my cellophane were 4x4 inches. You can decrease the dimension for smaller candies.)</li>
+                <li>Let it cool down before eating. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Leche Flan.png" alt="Leche Flan">
+            <h2>Leche Flan</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>10 eggs</li>
+                <li>1 can condensed milk (14 oz)</li>
+                <li>1 cup fresh milk or evaporated milk</li>
+                <li>1 cup granulated sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Using all the eggs, separate the yolks from the egg whites (only egg yolks will be used).</li>
+                <li>Place the egg yolks in a large bowl then beat them using a fork or an egg beater.</li>
+                <li>Add the condensed milk and mix thoroughly.</li>
+                <li>Pour in the fresh milk and vanilla extract. Mix well.</li>
+                <li>Place the mold (llanera) on top of the stove and heat using low fire.</li>
+                <li>Put the granulated sugar in the mold and mix thoroughly until the solid sugar turns into liquid (caramel) with a light brown color. Note: If you can't find a Llanera (Traditional flan mold), you can use individual round pans.</li>
+                <li>Spread the caramel (liquid sugar) evenly on the flat side of the mold.</li>
+                <li>Wait for 5 minutes then pour the egg yolk and milk mixture into the mold.</li>
+                <li>Cover the top of the mold using aluminum foil.</li>
+                <li>Steam the mold with the egg and milk mixture for 30 to 35 minutes.</li>
+                <li>After steaming, let the temperature cool down then refrigerate.</li>
+                <li>Serve chilled for dessert. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Chicharon Bulaklak.png" alt="Chicharon Bulaklak">
+            <h2>Chicharon Bulaklak</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 lbs. ruffle fat</li>
+                <li>1 tablespoon whole peppercorn</li>
+                <li>5 dried bay leaves</li>
+                <li>2 ½ tablespoons sea salt</li>
+                <li>4 cups canola oil</li>
+                <li>6 cups water</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Arrange the ruffle fat, whole peppercorn, 2 tablespoons salt, and bay leaves in a cooking pot. Pour-in water. Let it boil. Cover and then simmer for 1 hour.</li>
+                <li>Turn the heat off. Remove the boiled ruffle fat from the pot and then let the water drip off.</li>
+                <li>Rub the remaining salt all over the ruffled fat. Set aside.</li>
+                <li>Meanwhile, heat the cooking oil in a deep fryer or a deep cooking pot.</li>
+                <li>When the oil gets hot, slowly add the ruffled fat. Deep fry in low to medium heat until the texture becomes crisp and the color turns medium brown.</li>
+                <li>Remove from the deep fryer or cooking pot. Arrange on a plate lined with paper towels to absorb the oil.</li>
+                <li>Serve with spiced vinegar.</li>
+                <li>Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Ube Halaya.png" alt="Ube Halaya">
+            <h2>Ube Halaya</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 lb. grated purple yam</li>
+                <li>2 cups coconut milk</li>
+                <li>3/4 cup granulated white sugar</li>
+                <li>1 teaspoon cooking oil</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Pour the coconut milk into a cooking pot. Bring it to a boil.</li>
+                <li>Once the coconut milk starts to boil, add the sugar. Stir until the sugar completely dissolves.</li>
+                <li>Add the grated purple yam. Continue to cook while stirring over low to medium heat until the mixture thickens. Note: This may take around 20 to 30 minutes, so please be patient.</li>
+                <li>Grease the llanera with cooking oil. Transfer the ube halaya to the greased llanera to mold it into shape.</li>
+                <li>Let it cool down to room temperature. You can serve it immediately or place it in the refrigerator (covered with cling wrap).</li>
+                <li>Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Saging con Hielo.png" alt="Saging con Hielo">
+            <h2>Saging con Hielo</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>4 to 6 pieces ripe saba bananas, peeled</li>
+                <li>3/4 cup brown sugar</li>
+                <li>1 1/2 cups water</li>
+                <li>1 teaspoon vanilla extract or vanilla essence</li>
+                <li>1/4 teaspoon salt</li>
+                <li>1 1/2 cups shaved ice</li>
+                <li>1/4 cup evaporated milk</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Pour the water into a cooking pot. Let it boil.</li>
+                <li>Add the brown sugar. Stir.</li>
+                <li>Add the vanilla extract (or essence) and salt. Stir once more. Cook for 1 minute.</li>
+                <li>Add the saba bananas. Cover the cooking pot. Adjust the heat to low and cook for 10 to 15 minutes. Let the liquid reduce to half. Turn off the heat and allow the bananas to cool.</li>
+                <li>Transfer to a serving bowl. Top with shaved ice and pour evaporated milk.</li>
+                <li>Serve. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Pinoy Fruit Salad.png" alt="Pinoy Fruit Salad">
+            <h2>Pinoy Fruit Salad</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>2 cans (30 oz.) fruit cocktail</li>
+                <li>1 can (7.6 oz.) table cream</li>
+                <li>7 oz. (1/2 can) condensed milk</li>
+                <li>12 pieces maraschino cherries</li>
+            </ul>
+            <p>Instructions:</p>
+            <ol>
+                <li>Open the fruit cocktail and drain the syrup by pouring it into a colander. Let the liquid drain completely (around 30 minutes).</li>
+                <li>Arrange the drained fruit cocktail in a mixing bowl. Add the table cream, condensed milk, and maraschino cherries.</li>
+                <li>Gently fold the mixture until all the ingredients are well distributed. Cover the mixing bowl with cling wrap then refrigerate overnight.</li>
+                <li>Remove from the fridge and transfer to a serving bowl.</li>
+                <li>Serve. Share and enjoy!</li>
+            </ol>
+        </div>
+
+
+        <div class="food-card">
+            <img src="Lechon Manok.png" alt="Lechon Manok">
+            <h2>Lechon Manok</h2>
+            <p>Ingredients:</p>
+            <ul>
+                <li>1 (2 to 3 lbs.) whole chicken</li>
+            </ul>
+            
+            <p>Marinade:</p>
+            <ul>
+                <li>4 thumbs ginger, crushed</li>
+                <li>5 cloves garlic, crushed</li>
+                <li>1 medium red onion, sliced</li>
+                <li>5 pieces dried bay leaves, crumbled</li>
+                <li>1 stalk lemongrass, bottom part crushed</li>
+                <li>1 teaspoon coarse sea salt</li>
+                <li>¼ teaspoon ground black pepper</li>
+                <li>1 ¾ cups 7-up</li>
+            </ul>
+            
+            <p>Stuffing:</p>
+            <ul>
+                <li>1 stalk crushed lemongrass (tanglad)</li>
+                <li>2 bunches of green onions (dahon ng sibuyas)</li>
+            </ul>
+            
+            <p>Instructions:</p>
+            <ol>
+                <li>In a large bowl, combine all the marinade ingredients. Mix well.</li>
+                <li>Place the chicken inside a large re-sealable bag. Pour the marinade into the bag with the chicken. Put the onion and lemongrass inside the cavity. Seal and refrigerate overnight.</li>
+                <li>Remove the chicken from the bag and then stuff with fresh lemongrass and green onion.</li>
+                <li>Prepare to roast the chicken on the grill by skewering the entire fowl on a spit and secure both sides with a grill fork.</li>
+                <li>Spit-roast (or i-litson in Tagalog) for 2 ½ to 3 hours or until the chicken is done.</li>
+                <li>Transfer to a serving plate. Serve with lechon manok sauce and atchara.</li>
+                <li>Share and enjoy!</li>
+            </ol>
+            
+        </div>
+
+
+    </div>
+    <div class="section-header1">
+        <div class="logo-container">
+            <img src="Logo1.png" alt="Filipino Kitchen" class="logo"> 
+            <h2>Filipino Kitchen</h2>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput2" placeholder="Search...">
+            <button type="button" onclick="filterFoodCardsInSection()">Search</button>
+        </div>
+    </div>
+   
+    
+    
+    <div class="footer">
+        <h3>Contact:</h3>
+        <p><b>Email Us:</b>pinoybookrecipe@gmail.com</p>
+        <p><b>Phone:</b>0955-586-3234</p>
+    </div>
+
+    <script>
+
+
+        
+
+
+function activeLink(event) {
+    const links = document.querySelectorAll('.link');
+    links.forEach(link => link.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+
+function backbtn() {
+    const activeLink = document.querySelector('.link.active');
+    if (activeLink.previousElementSibling) {
+        const prevLink = activeLink.previousElementSibling;
+        window.location.href = prevLink.querySelector('a').getAttribute('href');
+    }
+}
+
+function nextbtn() {
+    const activeLink = document.querySelector('.link.active');
+    if (activeLink.nextElementSibling) {
+        const nextLink = activeLink.nextElementSibling;
+        window.location.href = nextLink.querySelector('a').getAttribute('href');
+    }
+}
+
+const totalPages = 5;
+        let currentPage = 1;
+
+        function updatePagination() {
+            const links = document.querySelectorAll('.pagination ul .link');
+            links.forEach(link => link.classList.remove('active'));
+            document.querySelector(`.pagination ul .link[value="${currentPage}"]`).classList.add('active');
+        }
+
+        function prevbtn() {
+            if (currentPage > 1) {
+                currentPage--;
+                window.location.href = `page${currentPage}.html`;
+            }
+            updatePagination();
+        }
+
+        function nextbtn() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                window.location.href = `page${currentPage}.html`;
+            }
+            updatePagination();
+        }
+
+        function activeLink(event) {
+            currentPage = Number(event.currentTarget.getAttribute('value'));
+            window.location.href = `page${currentPage}.html`;
+            updatePagination();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Extract the current page number from the URL, if available
+            const url = window.location.href;
+            const pageNum = url.match(/page(\d+)\.html/);
+            if (pageNum && pageNum[1]) {
+                currentPage = Number(pageNum[1]);
+            }
+            updatePagination();
+        });
+
+        function filterFoodCards() {
+            const input = document.getElementById('searchInput').value.toUpperCase();
+            const foodCards = document.getElementsByClassName('food-card');
+            let found = false;
+
+            for (let i = 0; i < foodCards.length; i++) {
+                let card = foodCards[i];
+                let title = card.getElementsByTagName('h2')[0];
+                if (title.innerHTML.toUpperCase().indexOf(input) > -1) {
+                    card.style.display = '';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+
+            document.getElementById('apologyMessage').style.display = found ? 'none' : 'block';
+        }
+   
+
+    
+function filterFoodCardsInSection() {
+    const searchInput = document.getElementById('searchInput2').value.trim().toLowerCase();
+    const foodCards = document.querySelectorAll('.food-card');
+    let found = false; // Flag to check if any matching card is found
+
+    foodCards.forEach(card => {
+        const header = card.querySelector('h2').innerText.trim().toLowerCase();
+        const ingredients = Array.from(card.querySelectorAll('ul li')).map(item => item.innerText.toLowerCase()).join(' ');
+
+        if (header.includes(searchInput) || ingredients.includes(searchInput)) {
+            card.style.display = 'block';
+            found = true;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Display or hide the apology message based on search result
+    const apologyMessage = document.getElementById('apologyMessage');
+    if (found) {
+        apologyMessage.style.display = 'none';
+    } else {
+        apologyMessage.style.display = 'block';
+    }
+}
+
+
+
+const foodCards = document.querySelectorAll('.food-card');
+
+foodCards.forEach(card => {
+    const header = card.querySelector('h2');
+    const lists = card.querySelectorAll('ul, ol'); // Select all <ul> and <ol> elements within the card
+    const paragraphs = card.querySelectorAll('p'); // Select all <p> elements within the card
+
+    header.addEventListener('click', () => {
+        // Toggle the 'full-screen' class on the clicked card
+        card.classList.toggle('full-screen');
+
+        // Toggle display of lists and paragraphs
+        lists.forEach(list => {
+            if (card.classList.contains('full-screen')) {
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
+        });
+        
+        paragraphs.forEach(paragraph => {
+            if (card.classList.contains('full-screen')) {
+                paragraph.style.display = 'block';
+            } else {
+                paragraph.style.display = 'none';
+            }
+        });
+
+        // Hide other food cards if the clicked card is in full-screen mode
+        if (card.classList.contains('full-screen')) {
+            foodCards.forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.style.display = 'none';
+                }
+            });
+        } else {
+            // Show all food cards if the clicked card is not in full-screen mode
+            foodCards.forEach(otherCard => {
+                otherCard.style.display = 'block';
+            });
+        }
+    });
+});
+
+    </script>
+
+</body>
+</html>
